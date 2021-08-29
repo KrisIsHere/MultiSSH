@@ -3,6 +3,10 @@ import sys
 choice = "a"
 serv = [["192.168.0.103", "22", "joe", "bigchungus"], ["192.168.0.102", "8022", "mama", "password"]]
 
+#TODO: SSH Keys
+
+#Code for initiating the SSH connection
+#Variable "compteur" (Maybe a mispelling of computer?) is only refrenced once here and never used
 def simpleLogin(hostname, port, username, password, compteur):
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -12,6 +16,7 @@ def simpleLogin(hostname, port, username, password, compteur):
     except:
         print(hostname, "\033[0;91mcannot connect\033[0;00m")
 
+#Code for sending SSH Commands
 def sshCommand(hostname, port, username, password, command, hide):
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -23,6 +28,7 @@ def sshCommand(hostname, port, username, password, command, hide):
     except:
         print("Error")
 
+#A continuation of main()
 def main1(serv):
     print("\n\033[0;92mBasic Multi-SSH control tool 0.90 \n\033[0;91mMade by KrisIsHere\033[0;00m\n\n")
     for x in range(len(serv)):
@@ -39,6 +45,7 @@ def main1(serv):
             for x in range(len(serv)):
                 sshCommand(serv[x][0], serv[x][1], serv[x][2], serv[x][3], command, "n")
 
+#Parsing command arguments
 def main():
     global choice
     args = sys.argv[1:]
