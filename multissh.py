@@ -5,8 +5,7 @@ serv = [["192.168.0.103", "22", "joe", "bigchungus"], ["192.168.0.102", "8022", 
 #TODO: SSH Keys
 
 #Code for initiating the SSH connection
-#Variable "compteur" (Maybe a mispelling of computer?) is only refrenced once here and never used
-def simpleLogin(hostname, port, username, password, compteur):
+def simpleLogin(hostname, port, username, password):
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     try:
@@ -30,19 +29,14 @@ def sshCommand(hostname, port, username, password, command, verbose):
 #A continuation of main()
 def main1(serv):
     print("\n\033[0;92mBasic Multi-SSH control tool 0.90 \n\033[0;91mMade by KrisIsHere\033[0;00m\n\n")
-    for x in range(len(serv)):
-        simpleLogin(serv[x][0], serv[x][1], serv[x][2], serv[x][3], x+1)
+    for x in serv:
+        simpleLogin(x[0], x[1], x[2], x[3])
     while True:
         global verbose
         print("\n")
-        if choice == "y":
-            command = input("$ ")
-            for x in range(len(serv)):
-                sshCommand(serv[x][0], serv[x][1], serv[x][2], serv[x][3], command, "y")
-        else:
-            command = input("$ ")
-            for x in range(len(serv)):
-                sshCommand(serv[x][0], serv[x][1], serv[x][2], serv[x][3], command, "n")
+        command = input("$ ")
+        for x in serv:
+            sshCommand(x[0], x[1], x[2], x[3], command, verbose)
 
 #Parsing command arguments
 def main():
