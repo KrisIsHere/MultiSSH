@@ -30,3 +30,6 @@ To get an up-to-date help document of MultiSSH, just run ```python3 multissh.py 
 - -l, --loud
   
   Shows command output
+- -u, --update
+  
+  Check for updates
