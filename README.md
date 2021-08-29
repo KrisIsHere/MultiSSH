@@ -6,16 +6,23 @@ MultiSSH is a simple python project that allows you to connect and control more 
 
 # How to install and run?
 First git clone the repo.
+
 ```$ git clone https://github.com/KrisIsHere/MultiSSH```
+
 then cd into it
+
 ```$ cd MultiSSH```
+
 then run it by typing
+
 ```$ python3 multissh.py```
 
 # Config options
 To get an up-to-date help document of MultiSSH, just run ```python3 multissh.py -h```.
 
 - -s, --silent
-  | Does not show command output
+  
+  Does not show command output
 - -l, --loud
-  | Shows command output
+  
+  Shows command output
