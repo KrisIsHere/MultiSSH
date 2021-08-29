@@ -51,7 +51,7 @@ def main1(serv):
 #Check for updates
 def up_check():
     print('Checking for Updates.....', end='')
-    ver_url = 'https://raw.githubusercontent.com/KrisIsHere/SkidKit/main/tools/version.txt'
+    ver_url = 'https://raw.githubusercontent.com/KrisIsHere/MultiSSH/main/version.txt'
     try:
         ver_rqst = requests.get(ver_url)
         ver_sc = ver_rqst.status_code
