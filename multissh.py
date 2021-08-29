@@ -1,6 +1,7 @@
 import paramiko
 import requests
 import sys
+import os
 version = "0.95"
 serv = [["192.168.0.103", "22", "joe", "bigchungus"], ["192.168.0.102", "8022", "mama", "password"]]
 
