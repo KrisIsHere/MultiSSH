@@ -89,7 +89,7 @@ def main():
     elif len(args) == 1 and args[0] in ["-u", "--update"]:
         up_check()
     else:
-        print("""Error: Usage: python3 multissh.py [-h] [-s] [-l]
+        print("""Error: Usage: python3 multissh.py [-h] [-s] [-l] [-u]
 
 Arguments:
     -h, --help   | shows this help
