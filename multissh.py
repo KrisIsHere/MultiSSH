@@ -1,6 +1,5 @@
 import paramiko
 import sys
-choice = "a"
 serv = [["192.168.0.103", "22", "joe", "bigchungus"], ["192.168.0.102", "8022", "mama", "password"]]
 
 #TODO: SSH Keys
@@ -17,13 +16,13 @@ def simpleLogin(hostname, port, username, password, compteur):
         print(hostname, "\033[0;91mcannot connect\033[0;00m")
 
 #Code for sending SSH Commands
-def sshCommand(hostname, port, username, password, command, hide):
+def sshCommand(hostname, port, username, password, command, verbose):
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     try:
         client.connect(hostname, port, username, password)
         stdin, stdout, stderr = client.exec_command(command)
-        if hide == "y":
+        if verbose:
             print(stdout.read().decode())
     except:
         print("Error")
@@ -34,7 +33,7 @@ def main1(serv):
     for x in range(len(serv)):
         simpleLogin(serv[x][0], serv[x][1], serv[x][2], serv[x][3], x+1)
     while True:
-        global choice
+        global verbose
         print("\n")
         if choice == "y":
             command = input("$ ")
@@ -47,13 +46,13 @@ def main1(serv):
 
 #Parsing command arguments
 def main():
-    global choice
+    global verbose
     args = sys.argv[1:]
     if len(args) == 1 and args[0] in ["-s", "--silent"]:
-        choice = "n"
+        verbose = False
         main1(serv)
     elif len(args) == 1 and args[0] in ["-l", "--loud"]:
-        choice = "y"
+        verbose = True
         main1(serv)
     else:
         print("""Error: Usage: python3 multissh.py [-h] [-s] [-l]
