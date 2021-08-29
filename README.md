@@ -7,7 +7,7 @@ MultiSSH is a simple python project that allows you to connect and control more 
 # How to install and run?
 First install dependencies
 
-```$ pip3 install paramiko```
+```$ pip3 install paramiko requests```
 
 then git clone the repo.
 
