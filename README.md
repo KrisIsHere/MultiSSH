@@ -16,6 +16,6 @@ then run it by typing
 To get an up-to-date help document of MultiSSH, just run ```python3 multissh.py -h```.
 
 - -s, --silent
-  Does not show command output
+  | Does not show command output
 - -l, --loud
-  Shows command output
+  | Shows command output
