@@ -61,7 +61,6 @@ def up_check():
 
             if version == github_ver:
                 print('\nUp-To-Date' + '\n')
-                main()
                 exit()
             else:
                 print('\nAvailable: {}'.format(github_ver) + '' + '\n')
