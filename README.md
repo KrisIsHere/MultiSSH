@@ -23,6 +23,7 @@ then run it by typing
 
 # How to add a server?
 Line 1:
+
   serv = [["192.168.0.103", "22", "joe", "password"], ["192.168.0.102", "8022", "mama", "fat"]]
 
 # Config options
