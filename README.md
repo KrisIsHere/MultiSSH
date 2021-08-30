@@ -21,10 +21,10 @@ then run it by typing
 
 ```$ python3 multissh.py```
 
-# How to add a server?
+# How to add/remove a server?
 Line 1:
 
-  ```    serv = [["192.168.0.103", "22", "joe", "password"], ["192.168.0.102", "8022", "mama", "fat"]]```
+  ```serv = [["192.168.0.103", "22", "joe", "password"], ["192.168.0.102", "8022", "mama", "fat"]]```
 
 # Config options
 To get an up-to-date help document of MultiSSH, just run ```python3 multissh.py -h```.
