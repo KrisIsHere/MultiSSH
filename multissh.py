@@ -1,9 +1,9 @@
-serv = [["192.168.0.103", "22", "joe", "password"], ["192.168.0.102", "8022", "mama", "fat"]]
+serv = [["192.168.0.103", "22", "mint", "123"], ["192.168.0.102", "8022", "u1_0a", "123"]]
 import paramiko
 import requests
 import sys
 import os
-version = "1.0"
+version = "1.1"
 
 #TODO: SSH Keys
 
@@ -34,7 +34,7 @@ def sshCommand(hostname, port, username, password, command, verbose, logsilent):
         client.connect(hostname, port, username, password)
         stdin, stdout, stderr = client.exec_command(command)
         if verbose:
-            print(stdout.read().decode())
+            print(username + "@" + hostname + "$ " + command + "\n======================\n" + stdout.read().decode() + "======================")
         elif logsilent:
             try:
                 os.system("echo '" + username + " @ " + hostname + "$ " + command + "\n======================\n" + stdout.read().decode() + "======================' >> silent_log.txt")
@@ -87,24 +87,27 @@ def up_check():
 
 #Parsing command arguments
 def main():
-    global verbose
-    global logsilent
-    args = sys.argv[1:]
-    if len(args) == 1 and args[0] in ["-s", "--silent"]:
-        logsilent = False
-        verbose = False
-        main1(serv)
-    elif len(args) == 1 and args[0] in ["-l", "--loud"]:
-        verbose = True
-        logsilent = False
-        main1(serv)
-    elif len(args) == 1 and args[0] in ["-u", "--update"]:
-        up_check()
-    if len(args) == 2 and args[0] in ["-s", "--silent"] and args[1] in ["-o", "--outlog"] or args[1] in ["-s", "--silent"] and args[0] in ["-o", "--outlog"] :
-        logsilent = True
-        verbose = False
-        main1(serv)
-    else:
+    try:
+        global verbose
+        global logsilent
+        args = sys.argv[1:]
+        if len(args) == 1 and args[0] in ["-s", "--silent"]:
+            logsilent = False
+            verbose = False
+            main1(serv)
+        elif len(args) == 1 and args[0] in ["-l", "--loud"]:
+            verbose = True
+            logsilent = False
+            main1(serv)
+        elif len(args) == 1 and args[0] in ["-u", "--update"]:
+            up_check()
+        elif len(args) == 2 and args[0] in ["-s", "--silent"] and args[1] in ["-o", "--outlog"] or args[1] in ["-s", "--silent"] and args[0] in ["-o", "--outlog"] :
+            logsilent = True
+            verbose = False
+            main1(serv)
+        else:
+            pass
+    except:
         print("""Error: Usage: python3 multissh.py [-h] [-s] [-o] [-l] [-u]
 
 Arguments:
