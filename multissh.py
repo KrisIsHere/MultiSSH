@@ -87,27 +87,29 @@ def up_check():
 
 #Parsing command arguments
 def main():
-    try:
-        global verbose
-        global logsilent
-        args = sys.argv[1:]
-        if len(args) == 1 and args[0] in ["-s", "--silent"]:
-            logsilent = False
-            verbose = False
-            main1(serv)
-        elif len(args) == 1 and args[0] in ["-l", "--loud"]:
-            verbose = True
-            logsilent = False
-            main1(serv)
-        elif len(args) == 1 and args[0] in ["-u", "--update"]:
-            up_check()
-        elif len(args) == 2 and args[0] in ["-s", "--silent"] and args[1] in ["-o", "--outlog"] or args[1] in ["-s", "--silent"] and args[0] in ["-o", "--outlog"] :
-            logsilent = True
-            verbose = False
-            main1(serv)
-        else:
-            pass
-    except:
+    global verbose
+    global logsilent
+    args = sys.argv[1:]
+    if len(args) == 1 and args[0] in ["-s", "--silent"]:
+        logsilent = False
+        verbose = False
+        main1(serv)
+    elif len(args) == 1 and args[0] in ["-l", "--loud"]:
+        verbose = True
+        logsilent = False
+        main1(serv)
+    elif len(args) == 1 and args[0] in ["-u", "--update"]:
+        up_check()
+    elif len(args) == 2 and args[0] in ["-s", "--silent"] and args[1] in ["-o", "--outlog"]:
+        logsilent = True
+        verbose = False
+        main1(serv)
+    elif len(args) == 2 and args[1] in ["-s", "--silent"] and args[0] in ["-o", "--outlog"]:
+        logsilent = True
+        verbose = False
+        main1(serv)
+    else:
+        pass
         print("""Error: Usage: python3 multissh.py [-h] [-s] [-o] [-l] [-u]
 
 Arguments:
